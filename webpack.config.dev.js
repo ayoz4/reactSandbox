@@ -1,15 +1,16 @@
-import path from "path";
+const path = require("path");
 
 export default {
-  entry: path.join(__dirname, "/client/index.js"),
+  entry: path.resolve(__dirname, "./client/index.js"),
   output: {
-    path: "/"
+    path: path.join(__dirname, "dist"),
+    filename: "bundle.js"
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        include: path.join(__dirname, "client"),
+        include: path.resolve(__dirname, "client"),
         use: {
           loader: "babel-loader"
         }
