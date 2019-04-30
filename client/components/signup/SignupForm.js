@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 
+import validateInput from "../../../server/shared/validations/signup";
+import TextFieldGroup from "../common/TextFieldGroup";
+
 class SignupForm extends Component {
   constructor(props) {
     super(props);
@@ -21,19 +24,34 @@ class SignupForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmit(e) {
-    const { userSignupRequest } = this.props;
+  isValid() {
+    const { errors, isValid } = validateInput(this.state);
 
+    if (!isValid) {
+      this.setState({
+        errors
+      });
+    }
+
+    return isValid;
+  }
+
+  onSubmit(e) {
     e.preventDefault();
-    this.setState({
-      errors: {},
-      isLoading: true
-    });
-    userSignupRequest(this.state).then(
-      () => {},
-      err => this.setState({ errors: err.response.data, isLoading: false })
-    );
-    console.log(this.state);
+
+    if (this.isValid()) {
+      this.setState({
+        errors: {},
+        isLoading: true
+      });
+      this.props
+        .userSignupRequest(this.state)
+        .then(
+          () => {},
+          err => this.setState({ errors: err.response.data, isLoading: false })
+        );
+      console.log(this.state);
+    }
   }
 
   render() {
@@ -43,61 +61,37 @@ class SignupForm extends Component {
       <form onSubmit={this.onSubmit}>
         <h1>h1</h1>
 
-        <div className="form-group">
-          <label className="control-label">Username</label>
-          <input
-            type="text"
-            name="username"
-            className={classNames("form-control", {
-              "is-invalid": errors.username
-            })}
-            value={this.state.username}
-            onChange={this.onChange}
-          />
-          <div class="invalid-feedback">{errors.username}</div>
-        </div>
+        <TextFieldGroup
+          error={errors.username}
+          label="Username"
+          onChange={this.onChange}
+          value={this.state.username}
+          field="username"
+        />
 
-        <div className="from-group">
-          <label className="control-label">Email</label>
-          <input
-            type="text"
-            name="email"
-            className={classNames("form-control", {
-              "is-invalid": errors.email
-            })}
-            value={this.state.email}
-            onChange={this.onChange}
-          />
-          <div class="invalid-feedback">{errors.email}</div>
-        </div>
+        <TextFieldGroup
+          error={errors.email}
+          label="Email"
+          onChange={this.onChange}
+          value={this.state.email}
+          field="email"
+        />
 
-        <div className="from-group">
-          <label className="control-label">Password</label>
-          <input
-            type="password"
-            name="password"
-            className={classNames("form-control", {
-              "is-invalid": errors.password
-            })}
-            value={this.state.password}
-            onChange={this.onChange}
-          />
-          <div class="invalid-feedback">{errors.password}</div>
-        </div>
+        <TextFieldGroup
+          error={errors.password}
+          label="Password"
+          onChange={this.onChange}
+          value={this.state.password}
+          field="password"
+        />
 
-        <div className="from-group">
-          <label className="control-label">Confirm password</label>
-          <input
-            type="password"
-            name="passwordConfirmation"
-            className={classNames("form-control", {
-              "is-invalid": errors.passwordConfirmation
-            })}
-            value={this.state.passwordConfirmation}
-            onChange={this.onChange}
-          />
-          <div class="invalid-feedback">{errors.passwordConfirmation}</div>
-        </div>
+        <TextFieldGroup
+          error={errors.passwordConfirmation}
+          label="Password confirmation"
+          onChange={this.onChange}
+          value={this.state.passwordConfirmation}
+          field="passwordConfirmation"
+        />
 
         <div className="form-group">
           <button
