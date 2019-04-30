@@ -33,6 +33,6 @@ export default {
     extensions: [".js"],
     alias: {
       "react-dom": "@hot-loader/react-dom"
-    }``
+    }
   }
 };

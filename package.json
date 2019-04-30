@@ -33,6 +33,7 @@
     "@hot-loader/react-dom": "^16.8.6",
     "babel-loader": "^7.1.5",
     "express": "^4.16.4",
-    "react": "^16.8.6"
+    "react": "^16.8.6",
+    "react-router": "^3.2.1"
   }
 }
