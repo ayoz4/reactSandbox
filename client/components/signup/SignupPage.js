@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 
 import SignupForm from "./SignupForm";
 import { userSignupRequest } from "../../actions/signupActions";
@@ -9,7 +8,7 @@ class SignupPage extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-md-4 col-md-offset-4">
+        <div className="col-md-4 col-md-offset-4 jumbotron">
           <SignupForm userSignupRequest={userSignupRequest} />
         </div>
       </div>
@@ -17,4 +16,7 @@ class SignupPage extends Component {
   }
 }
 
-export default SignupPage;
+export default connect(
+  null,
+  { userSignupRequest }
+)(SignupPage);
