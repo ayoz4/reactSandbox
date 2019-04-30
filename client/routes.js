@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, IndexRoute } from "react-router";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import App from "./components/App";
 import Greetings from "./components/Greetings";
@@ -7,7 +7,7 @@ import SignUp from "./components/signup/SignupPage";
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Greetings} />
+    <Route component={Greetings} />
     <Route path="signup" component={SignUp} />
   </Route>
 );

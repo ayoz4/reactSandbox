@@ -20,6 +20,7 @@ class SignupForm extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    this.props.userSignupRequest(this.state);
     console.log(this.state);
   }
 
