@@ -48,6 +48,10 @@ class SignupForm extends Component {
       });
       this.props.userSignupRequest(this.state).then(
         () => {
+          this.props.addFlashMessage({
+            type: "success",
+            text: "You have signed up successfully!"
+          });
           this.setState({ redirect: true });
         },
         err => this.setState({ errors: err.response.data, isLoading: false })
@@ -89,6 +93,7 @@ class SignupForm extends Component {
           onChange={this.onChange}
           value={this.state.password}
           field="password"
+          type="password"
         />
 
         <TextFieldGroup
@@ -97,9 +102,10 @@ class SignupForm extends Component {
           onChange={this.onChange}
           value={this.state.passwordConfirmation}
           field="passwordConfirmation"
+          type="password"
         />
 
-        <div className="form-group">
+        <div className="form-group col-md-4 offset-md-4">
           <button
             disabled={this.state.isLoading}
             className="btn btn-primary btn-lg"
@@ -111,6 +117,11 @@ class SignupForm extends Component {
     );
   }
 }
+
+SignupForm.propTypes = {
+  userSignupRequest: PropTypes.func.isRequired,
+  addFlashMessage: PropTypes.func.isRequired
+};
 
 SignupForm.contextTypes = {
   router: PropTypes.object.isRequired
