@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader/root";
 import NavBar from "./NavBar";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Greetings from "./Greetings";
 import SignupPage from "./signup/SignupPage";
 

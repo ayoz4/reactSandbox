@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import classNames from "classnames";
+import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 
 import validateInput from "../../../server/shared/validations/signup";
 import TextFieldGroup from "../common/TextFieldGroup";
@@ -13,7 +14,8 @@ class SignupForm extends Component {
       password: "",
       passwordConfirmation: "",
       errors: {},
-      isLoading: false
+      isLoading: false,
+      redirect: false
     };
 
     this.onChange = this.onChange.bind(this);
@@ -44,18 +46,22 @@ class SignupForm extends Component {
         errors: {},
         isLoading: true
       });
-      this.props
-        .userSignupRequest(this.state)
-        .then(
-          () => {},
-          err => this.setState({ errors: err.response.data, isLoading: false })
-        );
+      this.props.userSignupRequest(this.state).then(
+        () => {
+          this.setState({ redirect: true });
+        },
+        err => this.setState({ errors: err.response.data, isLoading: false })
+      );
       console.log(this.state);
     }
   }
 
   render() {
     const { errors } = this.state;
+
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
 
     return (
       <form onSubmit={this.onSubmit}>
@@ -105,5 +111,9 @@ class SignupForm extends Component {
     );
   }
 }
+
+SignupForm.contextTypes = {
+  router: PropTypes.object.isRequired
+};
 
 export default SignupForm;
