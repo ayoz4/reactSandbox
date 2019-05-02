@@ -5,8 +5,8 @@ module.exports = {
     client: "postgresql",
     connection: {
       database: "reactsb",
-      user: "react",
-      password: "asd"
+      user: "roman",
+      password: ""
     },
     pool: {
       min: 2,
