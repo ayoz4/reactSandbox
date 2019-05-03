@@ -41,7 +41,10 @@ class LoginForm extends Component {
       login(this.state).then(
         () => this.setState({ redirect: true }),
         err =>
-          this.setState({ errors: err.response.data.errors, isLoading: false })
+          this.setState({
+            errors: err.response.data.errors,
+            isLoading: false
+          })
       );
     }
   }
