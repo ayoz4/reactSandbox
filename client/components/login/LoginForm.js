@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 
 import TextFieldGroup from "../common/TextFieldGroup";
 import validateInput from "../../../server/shared/validations/login";
-import { login } from "../../actions/login";
+import { login } from "../../actions/authActions";
 
 class LoginForm extends Component {
   constructor(props) {
