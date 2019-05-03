@@ -7,6 +7,7 @@ import Greetings from "./Greetings";
 import SignupPage from "./signup/SignupPage";
 import FlashMessageList from "./flash/FlashMessageList";
 import LoginPage from "../components/login/LoginPage";
+import NewEventPage from "../components/events/NewEventPage";
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route exact path="/" component={Greetings} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
+          <Route path="/new-event" component={NewEventPage} />
         </div>
       </Router>
     );
