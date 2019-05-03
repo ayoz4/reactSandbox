@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import SignupForm from "./SignupForm";
-import { userSignupRequest } from "../../actions/signupActions";
+import { userSignupRequest, isUserExists } from "../../actions/signupActions";
 import { addFlashMessage } from "../../actions/flashMessages";
 
 class SignupPage extends Component {
@@ -14,6 +14,7 @@ class SignupPage extends Component {
       <div className="row mx-auto">
         <div className="col-md-4 offset-md-4">
           <SignupForm
+            isUserExists={isUserExists}
             userSignupRequest={userSignupRequest}
             addFlashMessage={addFlashMessage}
           />
@@ -25,10 +26,11 @@ class SignupPage extends Component {
 
 SignupPage.propTypes = {
   userSignupRequest: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired
+  addFlashMessage: PropTypes.func.isRequired,
+  isUserExists: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { userSignupRequest, addFlashMessage }
+  { userSignupRequest, addFlashMessage, isUserExists }
 )(SignupPage);

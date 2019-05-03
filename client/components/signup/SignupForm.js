@@ -15,11 +15,13 @@ class SignupForm extends Component {
       passwordConfirmation: "",
       errors: {},
       isLoading: false,
-      redirect: false
+      redirect: false,
+      invalid: false
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.checkUserExists = this.checkUserExists.bind(this);
   }
 
   onChange(e) {
@@ -60,6 +62,25 @@ class SignupForm extends Component {
     }
   }
 
+  checkUserExists(e) {
+    const field = e.target.name;
+    const val = e.target.value;
+    if (val !== "") {
+      this.props.isUserExists(val).then(res => {
+        let errors = this.state.errors;
+        let invalid;
+        if (res.data.user) {
+          errors[field] = "There is user with such " + field;
+          invalid = true;
+        } else {
+          errors[field] = "";
+          invalid = false;
+        }
+        this.setState({ errors, invalid });
+      });
+    }
+  }
+
   render() {
     const { errors } = this.state;
 
@@ -75,6 +96,7 @@ class SignupForm extends Component {
           error={errors.username}
           label="Username"
           onChange={this.onChange}
+          checkUserExists={this.checkUserExists}
           value={this.state.username}
           field="username"
         />
@@ -82,6 +104,7 @@ class SignupForm extends Component {
         <TextFieldGroup
           error={errors.email}
           label="Email"
+          checkUserExists={this.checkUserExists}
           onChange={this.onChange}
           value={this.state.email}
           field="email"
@@ -107,7 +130,7 @@ class SignupForm extends Component {
 
         <div className="form-group col-md-4 offset-md-4">
           <button
-            disabled={this.state.isLoading}
+            disabled={this.state.isLoading || this.state.invalid}
             className="btn btn-primary btn-lg"
           >
             Sign Up
@@ -120,7 +143,8 @@ class SignupForm extends Component {
 
 SignupForm.propTypes = {
   userSignupRequest: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired
+  addFlashMessage: PropTypes.func.isRequired,
+  isUserExists: PropTypes.func.isRequired
 };
 
 SignupForm.contextTypes = {
