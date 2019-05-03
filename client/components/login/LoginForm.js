@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 
 import TextFieldGroup from "../common/TextFieldGroup";
 import validateInput from "../../../server/shared/validations/login";
@@ -37,12 +38,11 @@ class LoginForm extends Component {
     e.preventDefault();
     if (this.isValid()) {
       this.setState({ errors: {}, isLoading: true });
-      this.props
-        .login(this.state)
-        .then(
-          res => this.setState({ redirect: true }),
-          err => this.setState({ errors: err.data.errors, isLoading: false })
-        );
+      login(this.state).then(
+        () => this.setState({ redirect: true }),
+        err =>
+          this.setState({ errors: err.response.data.errors, isLoading: false })
+      );
     }
   }
 
@@ -51,7 +51,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { identifier, password, errors, isLoading } = this.state;
+    const { errors, identifier, password, isLoading } = this.state;
 
     if (this.state.redirect) {
       return <Redirect to="/" />;
@@ -60,6 +60,8 @@ class LoginForm extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <h1>Login</h1>
+
+        {errors.form && <div className="alert alert-danger">{errors.form}</div>}
 
         <TextFieldGroup
           field="identifier"
@@ -73,7 +75,7 @@ class LoginForm extends Component {
           field="password"
           label="Password"
           value={password}
-          error={errors.identifier}
+          error={errors.password}
           onChange={this.onChange}
           type="password"
         />
