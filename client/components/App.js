@@ -6,6 +6,7 @@ import NavBar from "./NavBar";
 import Greetings from "./Greetings";
 import SignupPage from "./signup/SignupPage";
 import FlashMessageList from "./flash/FlashMessageList";
+import LoginPage from "../components/login/LoginPage";
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <FlashMessageList />
           <Route exact path="/" component={Greetings} />
           <Route path="/signup" component={SignupPage} />
+          <Route path="/login" component={LoginPage} />
         </div>
       </Router>
     );
