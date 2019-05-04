@@ -9,6 +9,7 @@ import FlashMessageList from "./flash/FlashMessageList";
 import LoginPage from "../components/login/LoginPage";
 import NewEventPage from "../components/events/NewEventPage";
 import requireAuth from "../utils/requireAuth";
+import ShopPage from "../components/shop/ShopPage";
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/new-event" component={requireAuth(NewEventPage)} />
+          <Route path="/shop" component={ShopPage} />
         </div>
       </Router>
     );

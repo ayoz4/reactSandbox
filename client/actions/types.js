@@ -2,3 +2,7 @@ export const ADD_FLASH_MESSAGE = "ADD_FLASH_MESSAGE";
 export const DELETE_FLASH_MESSAGE = "DELETE_FLASH_MESSAGE";
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
+
+export const ADD_GOOD = "ADD_GOOD";
+export const REMOVE_GOOD = "REMOVE_GOOD";
+export const EDIT_GOOD = "EDIT_GOOD";
