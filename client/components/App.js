@@ -8,6 +8,7 @@ import SignupPage from "./signup/SignupPage";
 import FlashMessageList from "./flash/FlashMessageList";
 import LoginPage from "../components/login/LoginPage";
 import NewEventPage from "../components/events/NewEventPage";
+import requireAuth from "../utils/requireAuth";
 
 class App extends Component {
   render() {
@@ -19,7 +20,7 @@ class App extends Component {
           <Route exact path="/" component={Greetings} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
-          <Route path="/new-event" component={NewEventPage} />
+          <Route path="/new-event" component={requireAuth(NewEventPage)} />
         </div>
       </Router>
     );
