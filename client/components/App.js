@@ -18,11 +18,10 @@ class App extends Component {
         <div>
           <NavBar />
           <FlashMessageList />
-          <Route exact path="/" component={Greetings} />
+          <Route exact path="/" component={ShopPage} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/new-event" component={requireAuth(NewEventPage)} />
-          <Route path="/shop" component={ShopPage} />
         </div>
       </Router>
     );

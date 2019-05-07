@@ -12,25 +12,20 @@ class Item extends Component {
   }
 
   render() {
-    const { id, name, description } = this.props;
+    const { id, name, description, onOpenEditingModal } = this.props;
 
     return (
       <div>
         <li>
           <div>
-            <span>{this.props.name}</span>
+            <span>{name}</span>
           </div>
           <div>
-            <span>{this.props.description}</span>
+            <span>{description}</span>
           </div>
           <div>
             <button onClick={this.onDelete}>delete</button>
-            <button onClick={() => this.props.editItem(id)}>edit</button>
-            <div>
-              <input name="name" onChange={this.props.onChange} />
-              <input name="desc" onChange={this.props.onChange} />
-              <button onClick={this.props.onEditItemAccept}>Accept</button>
-            </div>
+            <button onClick={() => onOpenEditingModal(id)}>edit</button>
           </div>
         </li>
       </div>

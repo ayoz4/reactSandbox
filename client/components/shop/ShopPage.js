@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import ShopForm from "./ShopForm";
 import ShopList from "./ShopList";
 import Modal from "../../modals/Modal";
 import { removeGood, addGood, editGood } from "../../actions/goodsActions";
@@ -60,10 +59,10 @@ class ShopPage extends Component {
                 field1="name"
                 label2="Description"
                 field2="description"
-                type="text"
                 onChange={this.onChange}
                 onSubmit={this.onSubmit}
                 onClose={this.onClose}
+                buttonTitle="Create good"
               />
             </div>
           )}

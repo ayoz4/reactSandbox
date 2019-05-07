@@ -11,16 +11,16 @@ class Modal extends Component {
 
   render() {
     const {
+      title,
       label1,
       label2,
       field1,
       field2,
-      title,
       isOpen,
       onSubmit,
       onClose,
       onChange,
-      type
+      buttonTitle
     } = this.props;
 
     return (
@@ -28,21 +28,11 @@ class Modal extends Component {
         {isOpen && (
           <form onSubmit={onSubmit} className="col-md-4 offset-md-4">
             <span>{title}</span>
-            <TextFieldGroup
-              field={field1}
-              label={label1}
-              type={type}
-              onChange={onChange}
-            />
-            <TextFieldGroup
-              field={field2}
-              label={label2}
-              type={type}
-              onChange={onChange}
-            />
+            <TextFieldGroup field={field1} label={label1} onChange={onChange} />
+            <TextFieldGroup field={field2} label={label2} onChange={onChange} />
             <div>
               <button type="submit" className="btn btn-primary">
-                Create good
+                {buttonTitle}
               </button>
               <button onClick={onClose}>Cancel</button>
             </div>
