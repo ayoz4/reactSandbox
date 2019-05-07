@@ -83,7 +83,7 @@ class LoginForm extends Component {
           type="password"
         />
 
-        <div className="from-group">
+        <div className="form-group col-md-4 offset-md-4">
           <button className="btn btn-primary btn-lg" disabled={isLoading}>
             Login
           </button>

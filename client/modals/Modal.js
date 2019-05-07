@@ -30,11 +30,13 @@ class Modal extends Component {
             <span>{title}</span>
             <TextFieldGroup field={field1} label={label1} onChange={onChange} />
             <TextFieldGroup field={field2} label={label2} onChange={onChange} />
-            <div>
-              <button type="submit" className="btn btn-primary">
+            <div class="btn-group">
+              <button type="submit" className="btn btn-success">
                 {buttonTitle}
               </button>
-              <button onClick={onClose}>Cancel</button>
+              <button className="btn btn-secondary" onClick={onClose}>
+                Cancel
+              </button>
             </div>
           </form>
         )}

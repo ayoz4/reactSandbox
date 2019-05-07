@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import ShopList from "./ShopList";
 import Modal from "../../modals/Modal";
+import Wrapper from "../../styled/ShopPageWrapper";
 import { removeGood, addGood, editGood } from "../../actions/goodsActions";
 
 class ShopPage extends Component {
@@ -45,34 +46,35 @@ class ShopPage extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div>
-        <div>
-          {isAuthenticated && (
-            <div>
-              <button onClick={() => this.setState({ isOpen: true })}>
-                Add +
-              </button>
-              <Modal
-                isOpen={this.state.isOpen}
-                title="Add good"
-                label1="Name"
-                field1="name"
-                label2="Description"
-                field2="description"
-                onChange={this.onChange}
-                onSubmit={this.onSubmit}
-                onClose={this.onClose}
-                buttonTitle="Create good"
-              />
-            </div>
-          )}
-          <ShopList
-            goods={this.props.goods}
-            removeGood={this.props.removeGood}
-            editGood={this.props.editGood}
-            isAuthenticated={isAuthenticated}
-          />
-        </div>
+      <div class="container">
+        {isAuthenticated && (
+          <Wrapper>
+            <button
+              className="btn btn-success"
+              onClick={() => this.setState({ isOpen: true })}
+            >
+              Add +
+            </button>
+            <Modal
+              isOpen={this.state.isOpen}
+              title="Add good"
+              label1="Name"
+              field1="name"
+              label2="Description"
+              field2="description"
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+              onClose={this.onClose}
+              buttonTitle="Create good"
+            />
+          </Wrapper>
+        )}
+        <ShopList
+          goods={this.props.goods}
+          removeGood={this.props.removeGood}
+          editGood={this.props.editGood}
+          isAuthenticated={isAuthenticated}
+        />
       </div>
     );
   }
