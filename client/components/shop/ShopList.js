@@ -58,23 +58,22 @@ class ShopList extends Component {
               onEditItemAccept={this.onEditItemAccept}
               onChange={this.onChange}
               onOpenEditingModal={this.onOpenEditingModal}
+              isAuthenticated={this.props.isAuthenticated}
             />
           ))}
         </ul>
-        {this.props.isAuthenticated && (
-          <Modal
-            isOpen={this.state.isOpen}
-            title="Editing"
-            label1="Name"
-            field1="name"
-            label2="Description"
-            field2="description"
-            buttonTitle="Accept"
-            onClose={this.onClose}
-            onSubmit={this.onSubmit}
-            onChange={this.onChange}
-          />
-        )}
+        <Modal
+          isOpen={this.state.isOpen}
+          title="Editing"
+          label1="Name"
+          field1="name"
+          label2="Description"
+          field2="description"
+          buttonTitle="Accept"
+          onClose={this.onClose}
+          onSubmit={this.onSubmit}
+          onChange={this.onChange}
+        />
       </div>
     );
   }

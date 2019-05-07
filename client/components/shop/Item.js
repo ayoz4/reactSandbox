@@ -23,10 +23,12 @@ class Item extends Component {
           <div>
             <span>{description}</span>
           </div>
-          <div>
-            <button onClick={this.onDelete}>delete</button>
-            <button onClick={() => onOpenEditingModal(id)}>edit</button>
-          </div>
+          {this.props.isAuthenticated && (
+            <div>
+              <button onClick={this.onDelete}>delete</button>
+              <button onClick={() => onOpenEditingModal(id)}>edit</button>
+            </div>
+          )}
         </li>
       </div>
     );
