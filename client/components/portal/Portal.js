@@ -1,7 +1,12 @@
-import React, { Component } from "react";
+import { Component } from "react";
+import ReactDOM from "react-dom";
 
-/* class Portal extends Component {
-  el = document.createElement("div");
+class Portal extends Component {
+  constructor(props) {
+    super(props);
+
+    this.el = document.createElement("div");
+  }
 
   componentDidMount() {
     document.body.appendChild(this.el);
@@ -10,9 +15,12 @@ import React, { Component } from "react";
   componentWillUnmount() {
     document.body.removeChild(this.el);
   }
+
   render() {
-    return ReactDOM.createPortal(this.props.children, this.el);
+    const { children } = this.props;
+
+    return ReactDOM.createPortal(children, this.el);
   }
 }
 
-export default Portal; */
+export default Portal;

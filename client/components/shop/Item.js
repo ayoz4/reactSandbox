@@ -8,11 +8,12 @@ class Item extends Component {
   }
 
   onDelete(e) {
-    e.preventDefault();
     this.props.removeGood(this.props.id);
   }
 
   render() {
+    const { id, name, description } = this.props;
+
     return (
       <div>
         <li>
@@ -24,7 +25,12 @@ class Item extends Component {
           </div>
           <div>
             <button onClick={this.onDelete}>delete</button>
-            <button>edit</button>
+            <button onClick={() => this.props.editItem(id)}>edit</button>
+            <div>
+              <input name="name" onChange={this.props.onChange} />
+              <input name="desc" onChange={this.props.onChange} />
+              <button onClick={this.props.onEditItemAccept}>Accept</button>
+            </div>
           </div>
         </li>
       </div>
